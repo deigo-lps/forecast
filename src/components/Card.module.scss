@@ -1,4 +1,4 @@
-@import "../../variables";
+@import "../variables";
 .card{
   display: flex;
   background-color: lighten($primary,5);
@@ -6,4 +6,6 @@
   margin:auto;
   padding:1rem;
   border-radius: 8px;
+  gap:1rem;
+  margin-bottom:1rem;
 }

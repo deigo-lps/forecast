@@ -1,0 +1,32 @@
+@import "../variables";
+.search{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap:0.5rem;
+  input{
+    width:100%;
+    font-size:1.3rem;
+    color:white;
+    padding:0.5rem;
+  }
+  button{
+    background-color: lighten($primary,15);
+    border:none;
+    border-radius: 5px;
+    color:white;
+    padding:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:2.7rem;
+    height:2.7rem;
+    svg{
+      width:1.3rem;
+      fill:lighten($primary,40);
+    }
+    &:hover{
+      background-color: lighten($primary,20);
+    }
+  }
+}

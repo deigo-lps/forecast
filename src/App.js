@@ -11,8 +11,8 @@ const DUMMY_DATA = [
 
 
 function App() {
-  const hasSearched = useSelector(state=>state.hasSearched);
-  const searchData = useSelector(state=>state.searchData);
+  const hasSearched = useSelector(state=>state.search.hasSearched);
+  const searchData = useSelector(state=>state.search.searchData);
   return (
     <>
       <Search/>

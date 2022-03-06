@@ -1,0 +1,9 @@
+@import "../../variables";
+.card{
+  display: flex;
+  background-color: lighten($primary,5);
+  max-width: 80rem;
+  margin:auto;
+  padding:1rem;
+  border-radius: 8px;
+}

@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import style from "./Search.module.scss";
 const Search = () => {
+  const [input,setInput] = useState("");
+
+  const handleInput = (event) =>{
+    setInput(event.target.value);
+  }
+
+  useEffect(()=>{
+    const debounceTest = setTimeout(()=>{
+      console.log('test');
+    },1000);
+    return()=>{
+      clearTimeout(debounceTest);
+    }
+  },[input])
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setInput("");
   };
 
   return (
     <Card>
       <form className={style.search} onSubmit={handleSubmit}>
-        <input placeholder="Pesquise" />
+        <input value={input} onChange={handleInput} placeholder="Pesquise" />
         <button type="submit">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             {/* {<!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->} */}

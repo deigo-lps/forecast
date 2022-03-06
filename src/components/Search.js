@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import { useDispatch } from "react-redux";
+import { searchActions } from "../store";
 import style from "./Search.module.scss";
+
 const Search = () => {
   const [input, setInput] = useState("");
+  const dispatch = useDispatch();
 
   const handleInput = (event) => {
     setInput(event.target.value);
@@ -13,7 +17,8 @@ const Search = () => {
       `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=81f0eb29c6d82794c74bebe993837906`
     );
     const data = await response.json();
-    console.log(data);
+    dispatch(searchActions.setSearchData(data));
+    dispatch(searchActions.setHasSearched(true));
   }
 
   useEffect(() => {

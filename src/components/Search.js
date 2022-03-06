@@ -2,20 +2,28 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import style from "./Search.module.scss";
 const Search = () => {
-  const [input,setInput] = useState("");
+  const [input, setInput] = useState("");
 
-  const handleInput = (event) =>{
+  const handleInput = (event) => {
     setInput(event.target.value);
+  };
+
+  async function fetchSearch(city) {
+    const response = await fetch(
+      `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=81f0eb29c6d82794c74bebe993837906`
+    );
+    const data = await response.json();
+    console.log(data);
   }
 
-  useEffect(()=>{
-    const debounceTest = setTimeout(()=>{
-      console.log('test');
-    },1000);
-    return()=>{
+  useEffect(() => {
+    const debounceTest = setTimeout(() => {
+      if (input.trim().length !== 0) fetchSearch(input);
+    }, 1000);
+    return () => {
       clearTimeout(debounceTest);
-    }
-  },[input])
+    };
+  }, [input]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -2,6 +2,8 @@ import React from "react";
 import Card from "./Card";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import style from "./Forecast.module.scss";
+import Spinner from "./Spinner";
 
 const Forecast = () => {
   const [forecast, setForecast] = useState(undefined);
@@ -25,7 +27,7 @@ const Forecast = () => {
   return (
     <Card>
       {isLoading ? (
-        <p>loading...</p>
+        <Spinner className={style.spinner} />
       ) : (
         <>
           <p>{forecast.main.temp}</p>

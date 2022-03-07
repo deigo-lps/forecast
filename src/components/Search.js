@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { useDispatch } from "react-redux";
 import { searchActions } from "../store";
-import loading from "../images/logo512.png";
+import Spinner from "./Spinner";
 import style from "./Search.module.scss";
 
 const Search = () => {
@@ -43,9 +43,7 @@ const Search = () => {
         <input value={input} onChange={handleInput} placeholder="Pesquise" />
       </form>
       {isLoading && (
-        <div className={style.search__spinner}>
-          <img src={loading} />
-        </div>
+        <Spinner className={style.search__spinner}/>
       )}
     </Card>
   );

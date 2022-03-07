@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Card from "./Card";
+import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { loginActions } from "../store";
 import { historyActions } from "../store";
@@ -27,7 +28,7 @@ const Login = () => {
       <Card>
         <form onSubmit={handleSubmit}>
           <input ref={username} placeholder="username" />
-          <button type="submit">Login</button>
+          <Button type="submit">Login</Button>
         </form>
       </Card>
     </div>

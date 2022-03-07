@@ -10,7 +10,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $primary;
   color:white;
-  padding:1rem;
+}
+
+.main{
+  padding:0 1rem;
 }
 
 input{

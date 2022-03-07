@@ -7,12 +7,13 @@ import style from "./ListItem.module.scss";
 const ListItem = (props) => {
   const dispatch = useDispatch();
   const history = useSelector(state=>state.history.history);
+  const user = useSelector(state=>state.login.user);
   async function postData() {
     let newCity = props.data;
     const id = getId(newCity);
     if(!(id in history)){
       const response = await fetch(
-        `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${id}.json`,
+        `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}/${id}.json`,
         {
           method: "PUT",
           body: JSON.stringify(props.data),

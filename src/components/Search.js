@@ -19,7 +19,7 @@ const Search = () => {
     async function fetchSearch(city) {
       setIsLoading(true);
       const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=81f0eb29c6d82794c74bebe993837906`
+        `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=3&appid=81f0eb29c6d82794c74bebe993837906`
       );
       const data = await response.json();
       dispatch(searchActions.setSearchData(data));

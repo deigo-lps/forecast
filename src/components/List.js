@@ -3,15 +3,16 @@ import ListItem from "./ListItem";
 import Card from "./Card";
 import style from "./List.module.scss";
 import getId from "../functions/getId";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { historyActions } from "../store";
 const List = (props) => {
   const dispatch = useDispatch();
+  const user = useSelector(state=>state.login.user);
   const handleDelete = async () => {
     if (props.data.length !== 0) {
       console.log("asd");
       const response = await fetch(
-        `https://teste-accurate-default-rtdb.firebaseio.com/forecast.json`,
+        `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}.json`,
         {
           method: "DELETE",
         }

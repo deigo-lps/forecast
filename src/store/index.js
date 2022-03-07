@@ -1,5 +1,20 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
+const loginSlice = createSlice({
+  name: "loginSlice",
+  initialState: { isLoggedIn: false, user: undefined },
+  reducers:{
+    login(state,action){
+      state.isLoggedIn=true;
+      state.user=action.payload;
+    },
+    logout(state){
+      state.isLoggedIn=false;
+      state.user=undefined;
+    }
+  }
+})
+
 const searchSlice = createSlice({
   name: "searchSlice",
   initialState: { searchData: [], hasSearched: false },
@@ -41,10 +56,11 @@ const historySlice = createSlice({
 });
 
 const store = configureStore({
-  reducer: { search: searchSlice.reducer, forecast: forecastSlice.reducer, history: historySlice.reducer },
+  reducer: { search: searchSlice.reducer, forecast: forecastSlice.reducer, history: historySlice.reducer, login: loginSlice.reducer },
 });
 
 export const searchActions = searchSlice.actions;
 export const forecastActions = forecastSlice.actions;
 export const historyActions = historySlice.actions;
+export const loginActions = loginSlice.actions;
 export default store;

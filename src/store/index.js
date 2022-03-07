@@ -14,21 +14,20 @@ const searchSlice = createSlice({
 });
 
 const forecastSlice = createSlice({
-  name:"forecastSlice",
-  initialState: { hasSelected: false, lat: null, lon: null },
+  name: "forecastSlice",
+  initialState: { hasSelected: false, coord: { lat: null, lon: null } },
   reducers: {
-    setHasSelected(state,action){
+    setHasSelected(state, action) {
       state.hasSelected = action.payload;
     },
-    setLatLong(state,action){
-      state.lat = action.payload.lat;
-      state.lon = action.payload.lon;
-    }
-  }
+    setLatLong(state, action) {
+      state.coord = { lat: action.payload.lat, lon: action.payload.lon };
+    },
+  },
 });
 
 const store = configureStore({
-  reducer: {search: searchSlice.reducer, forecast: forecastSlice.reducer},
+  reducer: { search: searchSlice.reducer, forecast: forecastSlice.reducer },
 });
 
 export const searchActions = searchSlice.actions;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import List from "./components/List";
 import Search from "./components/Search";
@@ -14,6 +14,16 @@ function App() {
   const hasSearched = useSelector((state) => state.search.hasSearched);
   const searchData = useSelector((state) => state.search.searchData);
   const hasSelected = useSelector((state) => state.forecast.hasSelected);
+  https: useEffect(() => {
+    async function getData() {
+      const response = await fetch(
+        `https://curso-react-f70ea-default-rtdb.firebaseio.com/forecast.json`
+      );
+      const data = await response.json();
+      console.log(data);
+    }
+    getData();
+  }, []);
 
   return (
     <>

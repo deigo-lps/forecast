@@ -34,7 +34,7 @@ function App() {
       <Search />
       {hasSearched && <List title="Search Results" data={searchData} />}
       {hasSelected && <Forecast />}
-      <List title="Previous Cities" data={historyArray}/>
+      <List title="Previous Cities" clear={true} data={historyArray}/>
     </>
   );
 }

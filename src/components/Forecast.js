@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import style from "./Forecast.module.scss";
 import Spinner from "./Spinner";
+import ForecastResult from "./ForecastResult";
 
 const Forecast = () => {
   const [forecast, setForecast] = useState(undefined);
@@ -18,7 +19,6 @@ const Forecast = () => {
       );
       const data = await response.json();
       setForecast(data);
-      console.log(data);
       setIsLoading(false);
     }
     getForecast();
@@ -29,11 +29,7 @@ const Forecast = () => {
       {isLoading ? (
         <Spinner className={style.spinner} />
       ) : (
-        <>
-          <p>{forecast.main.temp}</p>
-          <p>{forecast.main.temp_min}</p>
-          <p>{forecast.main.temp_max}</p>
-        </>
+        <ForecastResult data={forecast} />
       )}
     </Card>
   );

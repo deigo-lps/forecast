@@ -18,8 +18,8 @@ function App() {
   return (
     <>
       <Search />
-      {hasSelected && <Forecast/>}
       {hasSearched && <List title="Search Results" data={searchData} />}
+      {hasSelected && <Forecast />}
       <List title="Previous Cities" data={DUMMY_DATA} />
     </>
   );

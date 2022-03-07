@@ -12,6 +12,7 @@ const Search = () => {
 
   const handleInput = (event) => {
     setInput(event.target.value);
+    if (event.target.value === "") dispatch(searchActions.setHasSearched(false));
   };
 
   useEffect(() => {
@@ -42,9 +43,7 @@ const Search = () => {
       <form onSubmit={handleSubmit}>
         <input value={input} onChange={handleInput} placeholder="Pesquise" />
       </form>
-      {isLoading && (
-        <Spinner className={style.search__spinner}/>
-      )}
+      {isLoading && <Spinner className={style.search__spinner} />}
     </Card>
   );
 };

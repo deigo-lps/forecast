@@ -2,6 +2,7 @@ import React from "react";
 import ListItem from "./ListItem";
 import Card from "./Card";
 import style from "./List.module.scss";
+import getId from "../functions/getId";
 const List = (props) => {
   return (
     <Card className={style.list}>
@@ -9,7 +10,7 @@ const List = (props) => {
       {props.data.length !== 0 ? (
         <ul>
           {props.data.map((data) => {
-            return <ListItem key={data.id} data={data} />;
+            return <ListItem key={getId(data)} data={data} />;
           })}
         </ul>
       ) : (

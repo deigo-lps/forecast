@@ -1,23 +1,29 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
-import { forecastActions } from "../store";
+import { forecastActions, historyActions } from "../store";
+import getId from "../functions/getId";
 import style from "./ListItem.module.scss";
 const ListItem = (props) => {
   const dispatch = useDispatch();
-
+  const history = useSelector(state=>state.history.history);
   async function postData() {
-    const response = await fetch(
-      `https://teste-accurate-default-rtdb.firebaseio.com/forecast.json`,
-      {
-        method: "POST",
-        body: JSON.stringify(props.data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const responseJSON = await response.json();
+    let newCity = props.data;
+    const id = getId(newCity);
+    if(!(id in history)){
+      const response = await fetch(
+        `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${id}.json`,
+        {
+          method: "PUT",
+          body: JSON.stringify(props.data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const responseJSON = await response.json();
+      dispatch(historyActions.addToHistory({id: id, city: newCity}));
+    }
   }
 
   const handleClick = () => {

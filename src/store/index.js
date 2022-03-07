@@ -26,10 +26,25 @@ const forecastSlice = createSlice({
   },
 });
 
+const historySlice = createSlice({
+  name: "historySlice",
+  initialState: {history: {}},
+  reducers: {
+    addToHistory(state,action){
+      console.log(action.payload);
+      state.history[action.payload.id]=action.payload.city;
+    },
+    setHistory(state,action){
+      state.history=action.payload;
+    }
+  }
+});
+
 const store = configureStore({
-  reducer: { search: searchSlice.reducer, forecast: forecastSlice.reducer },
+  reducer: { search: searchSlice.reducer, forecast: forecastSlice.reducer, history: historySlice.reducer },
 });
 
 export const searchActions = searchSlice.actions;
 export const forecastActions = forecastSlice.actions;
+export const historyActions = historySlice.actions;
 export default store;

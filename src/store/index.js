@@ -3,17 +3,17 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 const loginSlice = createSlice({
   name: "loginSlice",
   initialState: { isLoggedIn: false, user: undefined },
-  reducers:{
-    login(state,action){
-      state.isLoggedIn=true;
-      state.user=action.payload;
+  reducers: {
+    login(state, action) {
+      state.isLoggedIn = true;
+      state.user = action.payload;
     },
-    logout(state){
-      state.isLoggedIn=false;
-      state.user=undefined;
-    }
-  }
-})
+    logout(state) {
+      state.isLoggedIn = false;
+      state.user = undefined;
+    },
+  },
+});
 
 const searchSlice = createSlice({
   name: "searchSlice",
@@ -24,6 +24,10 @@ const searchSlice = createSlice({
     },
     setHasSearched(state, action) {
       state.hasSearched = action.payload;
+    },
+    clearSearch(state) {
+      state.searchData = [];
+      state.hasSearched = false;
     },
   },
 });
@@ -38,25 +42,37 @@ const forecastSlice = createSlice({
     setLatLong(state, action) {
       state.coord = { lat: action.payload.lat, lon: action.payload.lon };
     },
+    clearForecast(state) {
+      state.hasSelected = false;
+      state.coord = { lat: null, lon: null };
+    },
   },
 });
 
 const historySlice = createSlice({
   name: "historySlice",
-  initialState: {history: {}},
+  initialState: { history: {} },
   reducers: {
-    addToHistory(state,action){
+    addToHistory(state, action) {
       console.log(action.payload);
-      state.history[action.payload.id]=action.payload.city;
+      state.history[action.payload.id] = action.payload.city;
     },
-    setHistory(state,action){
-      state.history=action.payload;
+    setHistory(state, action) {
+      state.history = action.payload;
+    },
+    clearHistory(state){
+      state.history = {}
     }
-  }
+  },
 });
 
 const store = configureStore({
-  reducer: { search: searchSlice.reducer, forecast: forecastSlice.reducer, history: historySlice.reducer, login: loginSlice.reducer },
+  reducer: {
+    search: searchSlice.reducer,
+    forecast: forecastSlice.reducer,
+    history: historySlice.reducer,
+    login: loginSlice.reducer,
+  },
 });
 
 export const searchActions = searchSlice.actions;

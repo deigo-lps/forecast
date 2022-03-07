@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
-import { forecastActions, historyActions } from "../store";
+import { forecastActions, historyActions, searchActions } from "../store";
 import getId from "../functions/getId";
 import style from "./ListItem.module.scss";
 const ListItem = (props) => {
@@ -30,6 +30,7 @@ const ListItem = (props) => {
   const handleClick = () => {
     dispatch(forecastActions.setHasSelected(true));
     dispatch(forecastActions.setLatLong(props.data));
+    dispatch(searchActions.setHasSearched(false));
     postData();
   };
 

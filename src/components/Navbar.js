@@ -3,12 +3,21 @@ import Card from "./Card";
 import style from "./Navbar.module.scss";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
-import { loginActions } from "../store";
+import {
+  loginActions,
+  searchActions,
+  forecastActions,
+  historyActions,
+} from "../store";
 const Navbar = () => {
-  const user = useSelector(state=>state.login.user);
+  const user = useSelector((state) => state.login.user);
   const dispatch = useDispatch();
   const handleLogout = () => {
+    localStorage.removeItem("user");
     dispatch(loginActions.logout());
+    dispatch(searchActions.clearSearch());
+    dispatch(forecastActions.clearForecast());
+    dispatch(historyActions.clearHistory());
   };
 
   return (

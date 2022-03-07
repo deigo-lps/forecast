@@ -41,7 +41,7 @@ const Search = () => {
   return (
     <Card className={style.search}>
       <form onSubmit={handleSubmit}>
-        <input value={input} onChange={handleInput} placeholder="Pesquise" />
+        <input value={input} onChange={handleInput} placeholder="Search" />
       </form>
       {isLoading && <Spinner className={style.search__spinner} />}
     </Card>

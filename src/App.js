@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import Forecast from "./components/Forecast";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
+import Modal from "./components/Modal";
 
 function App() {
   const hasSearched = useSelector((state) => state.search.hasSearched);
@@ -24,6 +25,7 @@ function App() {
     <>
       {isLoggedIn ? (
         <>
+          {/* <Modal h2="Erro." p="Ocorreu um erro com alguma requisição."/> */}
           <Navbar />
           <div className="main">
             <Search />

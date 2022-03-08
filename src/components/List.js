@@ -10,7 +10,6 @@ const List = (props) => {
   const user = useSelector(state=>state.login.user);
   const handleDelete = async () => {
     if (props.data.length !== 0) {
-      console.log("asd");
       const response = await fetch(
         `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}.json`,
         {

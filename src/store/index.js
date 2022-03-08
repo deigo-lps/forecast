@@ -54,7 +54,6 @@ const historySlice = createSlice({
   initialState: { history: {} },
   reducers: {
     addToHistory(state, action) {
-      console.log(action.payload);
       state.history[action.payload.id] = action.payload.city;
     },
     setHistory(state, action) {

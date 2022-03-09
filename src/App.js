@@ -1,11 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import List from "./components/List";
 import Search from "./components/Search";
 import Forecast from "./components/Forecast";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Modal from "./components/Modal";
+import { errorActions } from "./store";
 
 function App() {
   const hasSearched = useSelector((state) => state.search.hasSearched);
@@ -13,6 +14,9 @@ function App() {
   const hasSelected = useSelector((state) => state.forecast.hasSelected);
   const history = useSelector((state) => state.history.history);
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  const hasError = useSelector((state) => state.error.hasError);
+  const message = useSelector((state) => state.error.message);
+  const dispatch = useDispatch();
 
   var historyArray = [];
   if (history) {
@@ -21,11 +25,15 @@ function App() {
     }
   }
 
+  const handleErrorOk = () => {
+    dispatch(errorActions.removeError());
+  };
+
   return (
     <>
+      {hasError && <Modal h2="Error." p={message} onClick={handleErrorOk} />}
       {isLoggedIn ? (
         <>
-          {/* <Modal h2="Erro." p="Ocorreu um erro com alguma requisição."/> */}
           <Navbar />
           <div className="main">
             <Search />

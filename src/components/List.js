@@ -3,21 +3,32 @@ import ListItem from "./ListItem";
 import Card from "./Card";
 import style from "./List.module.scss";
 import getId from "../functions/getId";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { historyActions } from "../store";
+import { errorActions } from "../store";
+
 const List = (props) => {
   const dispatch = useDispatch();
-  const user = useSelector(state=>state.login.user);
+  const user = useSelector((state) => state.login.user);
   const handleDelete = async () => {
     if (props.data.length !== 0) {
-      const response = await fetch(
-        `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}.json`,
-        {
-          method: "DELETE",
+      try {
+        const response = await fetch(
+          `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}.json`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (!response.ok) {
+          dispatch(
+            errorActions.setError(`${response.status}: ${response.statusText}`)
+          );
+          return;
         }
-      );
-      const data = await response.json();
-      dispatch(historyActions.setHistory({}));
+        dispatch(historyActions.setHistory({}));
+      } catch {
+        dispatch(errorActions.setError(`Something went wrong.`));
+      }
     }
   };
 

@@ -1,5 +1,19 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
+const errorSlice = createSlice({
+  name: "errorSlice",
+  initialState: {hasError:false,message:""},
+  reducers:{
+    setError(state,action){
+      state.hasError=true;
+      state.message=action.payload;
+    },
+    removeError(state){
+      state.hasError=false;
+    }
+  }
+})
+
 const loginSlice = createSlice({
   name: "loginSlice",
   initialState: { isLoggedIn: false, user: undefined },
@@ -71,6 +85,7 @@ const store = configureStore({
     forecast: forecastSlice.reducer,
     history: historySlice.reducer,
     login: loginSlice.reducer,
+    error: errorSlice.reducer,
   },
 });
 
@@ -78,4 +93,5 @@ export const searchActions = searchSlice.actions;
 export const forecastActions = forecastSlice.actions;
 export const historyActions = historySlice.actions;
 export const loginActions = loginSlice.actions;
+export const errorActions = errorSlice.actions;
 export default store;

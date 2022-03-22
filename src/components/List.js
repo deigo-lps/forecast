@@ -14,7 +14,7 @@ const List = (props) => {
     if (props.data.length !== 0) {
       try {
         const response = await fetch(
-          `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}.json`,
+          `https://forecast-20acd-default-rtdb.firebaseio.com/forecast/${user}.json`,
           {
             method: "DELETE",
           }

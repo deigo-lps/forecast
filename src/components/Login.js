@@ -12,7 +12,7 @@ const Login = () => {
     async function getData(user) {
       try {
         const response = await fetch(
-          `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}.json`
+          `https://forecast-20acd-default-rtdb.firebaseio.com/forecast/${user}.json`
         );
         if (!response.ok) {
           dispatch(

@@ -19,7 +19,7 @@ const ListItem = (props) => {
     if (!(id in history)) {
       try {
         const response = await fetch(
-          `https://teste-accurate-default-rtdb.firebaseio.com/forecast/${user}/${id}.json`,
+          `https://forecast-20acd-default-rtdb.firebaseio.com/forecast/${user}/${id}.json`,
           {
             method: "PUT",
             body: JSON.stringify(props.data),

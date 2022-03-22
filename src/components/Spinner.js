@@ -4,7 +4,7 @@ import style from "./Spinner.module.scss"
 const Spinner = (props) =>{
   return(
     <div className={`${style.spinner} ${props.className}`}>
-      <img src={spinnerImage}/>
+      <img src={spinnerImage} alt="loading"/>
     </div>
   )
 }
